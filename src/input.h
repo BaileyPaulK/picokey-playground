@@ -21,4 +21,12 @@ input::~input()
 {
 }
 
+void input::pull()
+{
+}
+
+void input::resolve()
+{
+}
+
 #endif

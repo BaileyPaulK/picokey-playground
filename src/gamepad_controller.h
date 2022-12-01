@@ -9,7 +9,7 @@ const int LEFT_STICK    = 0;
 const int RIGHT_STICK   = 1;
 const int LEFT_TRIGGER  = 2;
 const int RIGHT_TRIGGER = 3;
-const int BUTTON        = 4;
+//const int BUTTON        = 4;
 
 
 class gamepad_controller

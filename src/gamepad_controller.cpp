@@ -47,5 +47,5 @@ void gamepad_controller::zeroReport()
     {
         _lastzero = 1;
     }
-    _report = _zeroreport
+    _report = _zeroreport;
 }
