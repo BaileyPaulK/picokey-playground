@@ -3,7 +3,7 @@ gpio pin that can do binary in and out
 */
 #ifndef DIGITAL_PIN
 #define DIGITAL_PIN
-#include "pico/stdlib.h"
+#include "stdlib.h"
 class digitalPin
 {
 private:
