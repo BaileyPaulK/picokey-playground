@@ -12,10 +12,10 @@ private:
 public:
     digitalPin(int);
     ~digitalPin();
-    void inputPin();
+    //void inputPin();
     bool get();
-    void outputPin();
-    bool set(bool);
+    //void outputPin();
+    //bool set(bool);
 
 };
 

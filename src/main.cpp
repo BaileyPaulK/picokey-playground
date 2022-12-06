@@ -32,8 +32,10 @@
 //#include "hid_device.h"
 
 #include "usb_descriptors.h"
-#include "gamepad_controller.h"
-#include "button.h"
+#include "input.h"
+#include "mouse_controller.h"
+//#include "gamepad_controller.h"
+//#include "button.h"
 
 
 //--------------------------------------------------------------------+
@@ -56,14 +58,15 @@ static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
 void led_blinking_task(void);
 void hid_task(void);
 
-gamepad_controller GAMEPAD;
+//gamepad_controller GAMEPAD;
 /*------------- MAIN -------------*/
 int main(void)
 {
   board_init();
   tusb_init();
   input inputs[] = {
-    button(20, GAMEPAD, LEFT_STICK, 50, 50, 0)
+    //button(20, GAMEPAD, LEFT_STICK, 50, 50, 0),
+    input()
   };
   
 
@@ -139,7 +142,7 @@ static void send_hid_report(uint8_t report_id, uint32_t btn)
         uint8_t keycode[6] = { 0 };
         keycode[0] = HID_KEY_A;
 
-        tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
+        //tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
         has_keyboard_key = true;
       }else
       {
@@ -155,7 +158,7 @@ static void send_hid_report(uint8_t report_id, uint32_t btn)
       int8_t const delta = 5;
 
       // no button, right + down, no scroll, no pan
-      tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta, delta, 0, 0);
+      //tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta, delta, 0, 0);
     }
     break;
 
@@ -168,13 +171,13 @@ static void send_hid_report(uint8_t report_id, uint32_t btn)
       {
         // volume down
         uint16_t volume_down = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
-        tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 2);
+        //tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 2);
         has_consumer_key = true;
       }else
       {
         // send empty key report (release key) if previously has key pressed
         uint16_t empty_key = 0;
-        if (has_consumer_key) tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &empty_key, 2);
+        //if (has_consumer_key) tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &empty_key, 2);
         has_consumer_key = false;
       }
     }
@@ -182,7 +185,7 @@ static void send_hid_report(uint8_t report_id, uint32_t btn)
 
     case REPORT_ID_GAMEPAD:
     {
-      GAMEPAD.sendReport();
+      //GAMEPAD.sendReport();
       /* use to avoid send multiple consecutive zero report for keyboard
       static bool has_gamepad_key = false;
 

@@ -12,9 +12,9 @@ pico_sdk_init()
 add_executable(${NAME}
     src/main.cpp # <-- Add source files here!
     src/usb_descriptors.c
-    src/button.cpp
+    #src/button.cpp
     src/digitalPin.cpp
-    src/gamepad_controller.cpp
+    #src/gamepad_controller.cpp
 )
 
 target_include_directories(${NAME} PRIVATE 

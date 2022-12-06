@@ -1,5 +1,5 @@
 #include "digitalPin.h"
 bool digitalPin::get()
 {
-    return (gpio_get(_pin) != 0)
+    return (gpio_get(_pin) != 0);
 }
