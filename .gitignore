@@ -1,6 +1,9 @@
 #build folders
 build/
 
+#compiled tests
+*.test
+
 # Prerequisites
 *.d
 
