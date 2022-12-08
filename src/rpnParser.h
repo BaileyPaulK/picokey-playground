@@ -27,7 +27,7 @@ const op NumOP      = {.code=-1, .priority=-1};// excluded from op switches, def
 const op DerefOP    = {.code=0, .priority=10}; // & derefrence
 const op AbsOP      = {.code=1, .priority=6};  // abs absolute value
 const op MaxOP      = {.code=2, .priority=6};  // max  max
-const op MaxOP      = {.code=3, .priority=6};  // min  min
+const op MinOP      = {.code=3, .priority=6};  // min  min
 const op PowOP      = {.code=4, .priority=5};  // ^
 const op MultOP     = {.code=5, .priority=4};  // *
 const op DividOP    = {.code=6, .priority=4};  // /
@@ -46,14 +46,15 @@ class rpnParser
 {
 private:
     deque<op>       parsed;
-    deque<refernce> refernces;
+    deque<refernce>& refernces;
 public:
-    rpnParser(/* args */);
+    rpnParser(string equation, deque<refernce>& refsIN);
     ~rpnParser();
 };
 
-rpnParser::rpnParser(/* args */)
+rpnParser::rpnParser(string equation, deque<refernce>& refsIN)
 {
+
 }
 
 rpnParser::~rpnParser()
