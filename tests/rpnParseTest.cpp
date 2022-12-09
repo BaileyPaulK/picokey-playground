@@ -38,9 +38,10 @@ bool test (string equation, deque<refernce> refernces, int8_t expected)
         cout << endl;
         return 1;
     }
+    value = eq.eval(); // redo since try out of scope
     if (value != expected)
     {
-        cout << "wrong solution for '" << equation << "'\nRefs: ";
+        cout << "wrong solution for '" << equation << "', " << to_string(value) << " != " << to_string(expected) << " (expected)\nRefs: ";
         for (refernce token: refernces)
         {
             cout << token.name << ", ";

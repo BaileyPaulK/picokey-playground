@@ -7,7 +7,7 @@ for i in tests/*.cpp
 do
     total=$((total+1))
     echo "\n"
-    if g++ "$i" -I "$PWD/src" -o "$PWD/${i%.cpp}.test"; then
+    if g++ "$i" -g "src/rpnParser.cpp" -I "$PWD/src" -o "$PWD/${i%.cpp}.test"; then
         if  (./"${i%.cpp}.test"); then
             succsess=$((succsess+1))
             echo "test succeeded"

@@ -1,4 +1,16 @@
 #include "rpnParser.h"
+void copyDeque(deque<op> from, deque<op>& to)
+{
+    while (!to.empty())
+    {
+        to.pop_front();
+    }
+    for (op copy: from)
+    {
+        to.push_back(copy);
+    }
+
+}
 rpnParser::rpnParser(string equation, deque<refernce>* refsPtr)
 {
     this->refernces = refsPtr;
@@ -10,7 +22,8 @@ rpnParser::~rpnParser()
 }
 int8_t rpnParser::eval()
 {
-    deque<op> output = this->parsed;
+    deque<op> output;
+    copyDeque(this->parsed, output);//deque<op> output = this->parsed; //NEED TO FIX
     int index = 0;
     while (output.size() > 1)
     {
@@ -147,9 +160,14 @@ int8_t rpnParser::eval()
 }
 void rpnParser::rpnParse()
 {
-    deque<op> input = this->parsed;
+    deque<op> input;
+    copyDeque(this->parsed, input);//deque<op> input = this->parsed; //NEED TO FIX
     deque<op> opStack;
-    this->parsed = opStack; //quick empty parsed
+    while (!this->parsed.empty()) //this->parsed = opStack; //quick empty parsed //NEED TO FIX
+    {
+        this->parsed.pop_front();
+    }
+    
     for (op token: input)
     {
         switch (token.code)
@@ -205,6 +223,11 @@ void rpnParser::parseToOps(string equation)
     {
         switch (equation[index])
         {
+        case ' ':
+            if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //empty build token first repeted but some cases use build token
+            buildToken = "";
+            continue;
+            break;
         case '^':
             if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //empty build token first repeted but some cases use build token
             buildToken = "";
@@ -343,7 +366,7 @@ op rpnParser::findOp(string token) //mainly for finding non reserved char ops, a
         return AbsOP;
     }
     
-    if (isdigit(token[0])) //if first is number then SHOULD be number
+    if (isdigit(token[0]) || token[0] == '-') //if first is number or - then SHOULD be number
     {
         op number = NumOP;
         number.value = stoi(token);
