@@ -236,10 +236,16 @@ void rpnParser::parseToOps(string equation)
             continue;
             break;
         case '-':
-            if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //empty build token first
-            buildToken = "";
-            this->parsed.push_back(SubOP);
-            continue;
+            if (buildToken.size() > 0 || this->parsed.back().code <= 0)  //if the previous was a number than is subtraction not negative
+            { 
+                this->parsed.push_back(findOp(buildToken)); //empty build token first
+                buildToken = "";
+                this->parsed.push_back(SubOP);
+                continue;
+            } else
+            {
+                //just let it continue to end of loop to build number
+            }
             break;
         case '<': //also test <=
             if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //empty build token first
