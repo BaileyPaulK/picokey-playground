@@ -1,5 +1,5 @@
 #include <iostream>
-#include "rpnParser.h"
+#include "../src/rpnParser.h"
 #include <string.h>
 #include <deque>
 using namespace std;
@@ -8,7 +8,7 @@ bool test (string equation, deque<refernce> refernces, int8_t expected)
 {
     try
     {
-        rpnParser eq(equation, refernces);
+        rpnParser eq(equation, &refernces);
     }
     catch(const std::exception& e)
     {
@@ -21,6 +21,7 @@ bool test (string equation, deque<refernce> refernces, int8_t expected)
         cout << endl;
         return 1;
     }
+    rpnParser eq(equation, &refernces);
     int8_t value;
     try
     {
