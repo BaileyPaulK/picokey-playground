@@ -4,6 +4,8 @@
 #include <deque>
 using namespace std;
 
+const float AcceptedPercentageError = 0.001; 
+
 bool test (string equation, deque<refernce> refernces, float expected)
 {
     try
@@ -39,7 +41,7 @@ bool test (string equation, deque<refernce> refernces, float expected)
         return 1;
     }
     value = eq.eval(); // redo since try out of scope
-    if (value != expected)
+    if (abs(value - expected) / expected > AcceptedPercentageError)
     {
         cout << "wrong solution for '" << equation << "', " << to_string(value) << " != " << to_string(expected) << " (expected)\nRefs: ";
         for (refernce token: refernces)
@@ -216,7 +218,7 @@ int main ()
     
     
     //order of operations tests
-    expected = 3 + 4 * 2 / pow(pow(( 1 - 5 ), 2), 3);
+    expected = 3.0 + 4.0 * 2.0 / pow(pow(( 1.0 - 5.0 ), 2.0), 3.0);
     if (test("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3", deque<refernce> {}, expected))
     {
         return 1;
