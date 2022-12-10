@@ -82,6 +82,18 @@ int main ()
         return 1;
     }
 
+    expected = pow(2, 3);
+    if (test("2 ^ 3", deque<refernce> {}, expected))
+    {
+        return 1;
+    }
+
+    expected = pow(-2, 3);
+    if (test("-2 ^ 3", deque<refernce> {}, expected))
+    {
+        return 1;
+    }
+
     expected = 18 / 9;
     if (test("18 / 9", deque<refernce> {}, expected))
     {
@@ -204,7 +216,7 @@ int main ()
     
     
     //order of operations tests
-    expected = 3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3;
+    expected = 3 + 4 * 2 / pow(pow(( 1 - 5 ), 2), 3);
     if (test("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3", deque<refernce> {}, expected))
     {
         return 1;
