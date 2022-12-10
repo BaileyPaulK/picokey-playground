@@ -147,54 +147,54 @@ int main ()
         for (int8_t b = 0; b <= 1; b++)
         {
             deque<refernce> refernces = {
-                {.name= "a", .address= a},
-                {.name= "b", .address= b}
+                {.name= "a", .address= &a},
+                {.name= "b", .address= &b}
             };
 
             expected = a == b;
-            if (test("a& == b&", deque<refernce> {}, expected))
+            if (test("a& == b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a <= b;
-            if (test("a& <= b&", deque<refernce> {}, expected))
+            if (test("a& <= b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a >= b;
-            if (test("a& >= b&", deque<refernce> {}, expected))
+            if (test("a& >= b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a && b;
-            if (test("a& && b&", deque<refernce> {}, expected))
+            if (test("a& && b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a || b;
-            if (test("a& || b&", deque<refernce> {}, expected))
+            if (test("a& || b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a > b;
-            if (test("a& > b&", deque<refernce> {}, expected))
+            if (test("a& > b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a < b;
-            if (test("a& < b&", deque<refernce> {}, expected))
+            if (test("a& < b&", refernces, expected))
             {
                 return 1;
             }
 
             expected = a == b;
-            if (test("a& == b&", deque<refernce> {}, expected))
+            if (test("a& == b&", refernces, expected))
             {
                 return 1;
             }
@@ -205,7 +205,7 @@ int main ()
     
     //order of operations tests
     expected = 3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3;
-    if (test("3 + 4 * 2 ÷ ( 1 - 5 ) ^ 2 ^ 3", deque<refernce> {}, expected))
+    if (test("3 + 4 * 2 / ( 1 - 5 ) ^ 2 ^ 3", deque<refernce> {}, expected))
     {
         return 1;
     }

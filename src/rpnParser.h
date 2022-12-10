@@ -15,7 +15,7 @@ using namespace std;
 struct refernce
 {
     string      name;
-    int8_t&    address;
+    int8_t*    address;
 };
 
 struct op
@@ -56,7 +56,7 @@ private:
     op findOp(string token);
     int8_t getRefIndex(string token);
 public:
-    rpnParser(string equation, deque<refernce> refsPtr);
+    rpnParser(string equation, deque<refernce>& refsPtr);
     ~rpnParser();
     int8_t eval();
 };
