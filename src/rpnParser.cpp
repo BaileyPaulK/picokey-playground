@@ -49,7 +49,7 @@ int8_t rpnParser::eval()
             {
                 output[index - 2].value = output[index - 1].value;
             }
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             continue;
             break;
@@ -58,96 +58,96 @@ int8_t rpnParser::eval()
             {
                 output[index - 2].value = output[index - 1].value;
             }
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             continue;
             break;
         case PowOP.code: //^
             output[index-2].value = pow(output[index-2].value, output[index-1].value);
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
         case MultOP.code: //*
             output[index-2].value = output[index-2].value * output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case DividOP.code: ///
             output[index-2].value = output[index-2].value / output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case ModOP.code: //%
             output[index-2].value = output[index-2].value % output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case AddOP.code: //+
             output[index-2].value = output[index-2].value + output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case SubOP.code: //-
             output[index-2].value = output[index-2].value - output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case LessOP.code: //<
             output[index-2].value = output[index-2].value < output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case GreatOP.code: //>
             output[index-2].value = output[index-2].value > output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case LessOrOP.code: //<=
             output[index-2].value = output[index-2].value <= output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case GreatOrOP.code: //>=
             output[index-2].value = output[index-2].value >= output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case EqualOP.code: //==
             output[index-2].value = output[index-2].value == output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case AndOP.code: //&&
             output[index-2].value = output[index-2].value && output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
             break;
         case OrOP.code: //||
             output[index-2].value = output[index-2].value || output[index-1].value;
-            output.erase(output.begin() + index - 1, output.begin() + index);
+            output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
             continue;
@@ -224,6 +224,7 @@ void rpnParser::parseToOps(string equation)
         switch (equation[index])
         {
         case ' ':
+        case ',':
             if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //empty build token first repeted but some cases use build token
             buildToken = "";
             continue;
@@ -261,7 +262,7 @@ void rpnParser::parseToOps(string equation)
         case '-':
             if (buildToken.size() > 0 || this->parsed.back().code <= 0)  //if the previous was a number than is subtraction not negative
             { 
-                this->parsed.push_back(findOp(buildToken)); //empty build token first
+                if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //rechecked for now empty build token first
                 buildToken = "";
                 this->parsed.push_back(SubOP);
                 continue;
@@ -349,10 +350,11 @@ void rpnParser::parseToOps(string equation)
         }
         buildToken += equation[index];
     }
-    
+    if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //empty build token
 }
 op rpnParser::findOp(string token) //mainly for finding non reserved char ops, and identifying numbers
 {
+    //cout << token.size() << ", " << token.empty() << endl;
     if (token == "max")
     {
         return MaxOP;
@@ -385,9 +387,9 @@ op rpnParser::findOp(string token) //mainly for finding non reserved char ops, a
 }
 int8_t rpnParser::getRefIndex(string token)
 {
-    for (int8_t index = 0; index < (*refernces).size(); index++)
+    for (int8_t index = 0; index < (*this->refernces).size(); index++)
     {
-        if((*refernces)[index].name == token)
+        if((*this->refernces)[index].name == token)
         {
             return index;
         }

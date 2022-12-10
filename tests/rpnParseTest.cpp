@@ -152,49 +152,49 @@ int main ()
             };
 
             expected = a == b;
-            if (test("a == b", deque<refernce> {}, expected))
+            if (test("a& == b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a <= b;
-            if (test("a <= b", deque<refernce> {}, expected))
+            if (test("a& <= b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a >= b;
-            if (test("a >= b", deque<refernce> {}, expected))
+            if (test("a& >= b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a && b;
-            if (test("a && b", deque<refernce> {}, expected))
+            if (test("a& && b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a || b;
-            if (test("a || b", deque<refernce> {}, expected))
+            if (test("a& || b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a > b;
-            if (test("a > b", deque<refernce> {}, expected))
+            if (test("a& > b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a < b;
-            if (test("a < b", deque<refernce> {}, expected))
+            if (test("a& < b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
 
             expected = a == b;
-            if (test("a == b", deque<refernce> {}, expected))
+            if (test("a& == b&", deque<refernce> {}, expected))
             {
                 return 1;
             }
