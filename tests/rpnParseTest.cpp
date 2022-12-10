@@ -8,7 +8,7 @@ bool test (string equation, deque<refernce> refernces, int8_t expected)
 {
     try
     {
-        rpnParser eq(equation, &refernces);
+        rpnParser eq(equation, refernces);
     }
     catch(const std::exception& e)
     {
@@ -21,7 +21,7 @@ bool test (string equation, deque<refernce> refernces, int8_t expected)
         cout << endl;
         return 1;
     }
-    rpnParser eq(equation, &refernces); //have to redefine because try is out of scope and to lazy to figure out better solution
+    rpnParser eq(equation, refernces); //have to redefine because try is out of scope and to lazy to figure out better solution
     int8_t value;
     try
     {

@@ -11,7 +11,7 @@ void copyDeque(deque<op> from, deque<op>& to)
     }
 
 }
-rpnParser::rpnParser(string equation, deque<refernce>* refsPtr)
+rpnParser::rpnParser(string equation, deque<refernce> refsPtr)
 {
     this->refernces = refsPtr;
     parseToOps(equation);
@@ -34,7 +34,7 @@ int8_t rpnParser::eval()
             continue;
             break;
         case RefOP.code: //refrence
-            output[index].value = (*this->refernces)[output[index].value].address;
+            output[index].value = this->refernces[output[index].value].address;
             output[index].code = -1;
             index++;
             continue;
@@ -387,9 +387,9 @@ op rpnParser::findOp(string token) //mainly for finding non reserved char ops, a
 }
 int8_t rpnParser::getRefIndex(string token)
 {
-    for (int8_t index = 0; index < (*this->refernces).size(); index++)
+    for (int8_t index = 0; index < this->refernces.size(); index++)
     {
-        if((*this->refernces)[index].name == token)
+        if(this->refernces[index].name == token)
         {
             return index;
         }

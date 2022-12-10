@@ -50,13 +50,13 @@ class rpnParser
 {
 private:
     deque<op>       parsed;
-    deque<refernce>* refernces;
+    deque<refernce> refernces;
     void parseToOps(string equation); //parse equation string into ops in parsed
     void rpnParse();                  //take parsed ops and parse into rpn
     op findOp(string token);
     int8_t getRefIndex(string token);
 public:
-    rpnParser(string equation, deque<refernce>* refsPtr);
+    rpnParser(string equation, deque<refernce> refsPtr);
     ~rpnParser();
     int8_t eval();
 };
