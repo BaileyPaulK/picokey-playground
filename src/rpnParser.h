@@ -22,7 +22,7 @@ struct op
 {
     int8_t code;       //defined value to represent op (for switch statments && queue)
     int8_t priority;   //higher value indicates higher priority
-    int8_t value;      //value for numbers, index for refernces
+    float value;      //value for numbers, index for refernces
 };
 
 static constexpr op NumOP      = {.code=-1, .priority=-1};// excluded from op switches, default for static numbers
@@ -58,6 +58,6 @@ private:
 public:
     rpnParser(string equation, deque<refernce>& refsPtr);
     ~rpnParser();
-    int8_t eval();
+    float eval();
 };
 #endif

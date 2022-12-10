@@ -20,7 +20,7 @@ rpnParser::rpnParser(string equation, deque<refernce>& refsPtr)
 rpnParser::~rpnParser()
 {
 }
-int8_t rpnParser::eval()
+float rpnParser::eval()
 {
     deque<op> output;
     copyDeque(this->parsed, output);//deque<op> output = this->parsed; //NEED TO FIX
@@ -83,7 +83,7 @@ int8_t rpnParser::eval()
             continue;
             break;
         case ModOP.code: //%
-            output[index-2].value = output[index-2].value % output[index-1].value;
+            output[index-2].value = fmod(output[index-2].value, output[index-1].value);
             output.erase(output.begin() + index - 1, output.begin() + index + 1);
             index--; //2 ops were erased so decrament 1 to traverse by 1 (to next unseen)
             break;
@@ -260,7 +260,7 @@ void rpnParser::parseToOps(string equation)
             continue;
             break;
         case '-':
-            if (buildToken.size() > 0 || this->parsed.back().code <= 0)  //if the previous was a number than is subtraction not negative
+            if (buildToken.size() > 0 || (!this->parsed.empty() && this->parsed.back().code <= 0))  //if the previous was a number than is subtraction not negative
             { 
                 if (buildToken.size() > 0) { this->parsed.push_back(findOp(buildToken)); } //rechecked for now empty build token first
                 buildToken = "";

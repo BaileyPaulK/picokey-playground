@@ -4,7 +4,7 @@
 #include <deque>
 using namespace std;
 
-bool test (string equation, deque<refernce> refernces, int8_t expected)
+bool test (string equation, deque<refernce> refernces, float expected)
 {
     try
     {
@@ -55,7 +55,7 @@ bool test (string equation, deque<refernce> refernces, int8_t expected)
 int main ()
 {
     cout << "Testing rpnParser.cpp" << endl;
-    int8_t expected;
+    float expected;
     //test simple parse
 
     expected = abs(-23);
@@ -100,7 +100,7 @@ int main ()
         return 1;
     }
 
-    expected = 18 % 9;
+    expected = fmod(18.0, 9.0);
     if (test("18 % 9", deque<refernce> {}, expected))
     {
         return 1;
